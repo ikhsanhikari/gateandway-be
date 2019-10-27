@@ -10,4 +10,6 @@ public interface PingEndPoint {
 
     @GetMapping("")
     public ResponseEntity ping();
+
+
 }

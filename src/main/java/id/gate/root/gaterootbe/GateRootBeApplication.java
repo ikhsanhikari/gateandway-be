@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties({
-		FileStorageProperties.class
-})
+//@EnableConfigurationProperties({
+//		FileStorageProperties.class
+//})
 public class GateRootBeApplication {
 
 	public static void main(String[] args) {

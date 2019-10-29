@@ -1,16 +1,12 @@
 package id.gate.root.gaterootbe.service.impl;
 
-import id.gate.root.gaterootbe.dao.PartnerDAO;
-import id.gate.root.gaterootbe.dao.PostDAO;
-import id.gate.root.gaterootbe.dao.UserDAO;
-import id.gate.root.gaterootbe.dao.UserPostDAO;
+import id.gate.root.gaterootbe.dao.*;
 import id.gate.root.gaterootbe.data.dto.request.RequestPostDTO;
+import id.gate.root.gaterootbe.data.dto.response.ResponseFirstCommentDTO;
 import id.gate.root.gaterootbe.data.dto.response.ResponsePostDTO;
 import id.gate.root.gaterootbe.data.json.*;
-import id.gate.root.gaterootbe.data.model.Partner;
-import id.gate.root.gaterootbe.data.model.Post;
-import id.gate.root.gaterootbe.data.model.User;
-import id.gate.root.gaterootbe.data.model.UserPost;
+import id.gate.root.gaterootbe.data.model.*;
+import id.gate.root.gaterootbe.mapper.FirstCommentMapper;
 import id.gate.root.gaterootbe.mapper.PostMapper;
 import id.gate.root.gaterootbe.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +35,15 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PartnerDAO partnerDAO;
 
+    @Autowired
+    private FirstCommentDAO firstCommentDAO;
+
+    @Autowired
+    private PostFirstCommentDAO postFirstCommentDAO;
+
+    @Autowired
+    private FirstCommentMapper firstCommentMapper;
+
     @Override
     public ResponseEntity findAll() {
         List<Post> posts= postDAO.select();
@@ -57,13 +62,35 @@ public class PostServiceImpl implements PostService {
         userId.add(me);
 
         List<Post> posts= postDAO.selectForPartner(userId);
+
         for(Post post:posts){
             ResponsePostDTO postDTO = postMapper.convert(post);
 
             User user = userDAO.get(post.getUserId());
             postDTO.setUsers(user);
+
+
+            List<PostFirstComment> postFirstComments = postFirstCommentDAO.findByPostId(post.getId());
+            List<ResponseFirstCommentDTO> firstComments = new ArrayList<>();
+
+            for(PostFirstComment postFirstComment: postFirstComments){
+                FirstComment firstComment = firstCommentDAO.get(postFirstComment.getFirstCommentId());
+                ResponseFirstCommentDTO responseFirstCommentDTO = firstCommentMapper.convert(firstComment);
+
+                User userComment = userDAO.get(postFirstComment.getUserId());
+                responseFirstCommentDTO.setUserComments(userComment);
+
+                firstComments.add(responseFirstCommentDTO);
+            }
+
+            postDTO.setFirstComments(firstComments);
+
             postDTOS.add(postDTO);
         }
+
+
+
+
         return ResponseEntity.ok(new ResponseData(postDTOS.size(),"post",postDTOS));
     }
 

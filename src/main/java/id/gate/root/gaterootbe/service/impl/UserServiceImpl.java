@@ -192,7 +192,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseEntity findByUsername(String username) {
+
+        if(username == null){
+            return ResponseEntity.badRequest().body(new ResponseMessage("User Name cannot be null"));
+        }
+
         User user = userDAO.findByUsername(username);
+
+        if(user == null){
+            return ResponseEntity.badRequest().body(new ResponseMessage("User cannot be null"));
+        }
+
         List<ResponseAchievementDTO> achievementDTOS =  new ArrayList<>();
         List<UserAchievement> userAchievements = userAchievementDAO.findByUserId(user.getId());
         for(UserAchievement userAchievement: userAchievements){

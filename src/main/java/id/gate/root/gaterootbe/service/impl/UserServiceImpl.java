@@ -329,5 +329,4 @@ public class UserServiceImpl implements UserService{
         return ResponseEntity.ok(new ResponseData(searchUserDTOS.size(),"user",searchUserDTOS));
     }
 
-
 }

@@ -25,6 +25,8 @@ public class ResponseUserDTO implements Serializable {
 
     private String gender;
 
+    private String email;
+
     private List<ResponseAchievementDTO> achievements;
 
     private List<ResponseExperienceDTO> experiences;

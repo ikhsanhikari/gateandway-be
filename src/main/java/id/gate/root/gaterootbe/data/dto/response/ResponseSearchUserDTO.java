@@ -26,4 +26,6 @@ public class ResponseSearchUserDTO implements Serializable {
 
     private String username;
 
+    private String email;
+
 }

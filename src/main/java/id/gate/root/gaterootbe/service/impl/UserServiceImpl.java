@@ -107,9 +107,15 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public ResponseEntity save(RequestUserDTO requestUserDTO) {
-        User user = userMapper.reverse(requestUserDTO);
-        userDAO.save(user);
-        return ResponseEntity.ok(new ResponseSave(user));
+        User cek = userDAO.findByEmail(requestUserDTO.getEmail());
+        if(cek == null){
+            User user = userMapper.reverse(requestUserDTO);
+            userDAO.save(user);
+            return ResponseEntity.ok(new ResponseSave(user));
+        }else{
+            return ResponseEntity.badRequest().body("Email has been already exist");
+        }
+
     }
 
     @Override

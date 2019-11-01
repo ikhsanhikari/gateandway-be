@@ -21,4 +21,6 @@ public interface UserDAO extends JpaRepository<User,Long> {
 
     @Query("select u from User u where u.status = 1 and u.firstName like %?1% or u.lastName like %?1%")
     List<User> findByFirstNameOrLastName(String search);
+
+    User findByEmail(String email);
 }

@@ -44,6 +44,7 @@ public class UserMapper implements BaseMapper<User, RequestUserDTO>{
         result.setGender(source.getGender());
         result.setLastName(source.getLastName());
         result.setPhoneNumber(source.getPhoneNumber());
+        result.setEmail(source.getEmail());
         return result;
     }
 
@@ -58,6 +59,7 @@ public class UserMapper implements BaseMapper<User, RequestUserDTO>{
         result.setLastName(source.getLastName());
         result.setPhoneNumber(source.getPhoneNumber());
         result.setUsername(source.getUsername());
+        result.setEmail(source.getEmail());
 
         return result;
     }

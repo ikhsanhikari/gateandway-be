@@ -60,6 +60,8 @@ public class UserMapper implements BaseMapper<User, RequestUserDTO>{
         result.setPhoneNumber(source.getPhoneNumber());
         result.setUsername(source.getUsername());
         result.setEmail(source.getEmail());
+        result.setPhotoProfile(source.getPhotoProfile());
+        result.setPhotoCover(source.getCover());
 
         return result;
     }

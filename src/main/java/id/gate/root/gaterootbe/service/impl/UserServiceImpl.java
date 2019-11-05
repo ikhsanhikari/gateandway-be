@@ -1,6 +1,7 @@
 package id.gate.root.gaterootbe.service.impl;
 
 import id.gate.root.gaterootbe.dao.*;
+import id.gate.root.gaterootbe.data.dto.request.RequestPhotoDTO;
 import id.gate.root.gaterootbe.data.dto.request.RequestUserDTO;
 import id.gate.root.gaterootbe.data.dto.response.*;
 import id.gate.root.gaterootbe.data.json.*;
@@ -333,6 +334,24 @@ public class UserServiceImpl implements UserService{
 
         }
         return ResponseEntity.ok(new ResponseData(searchUserDTOS.size(),"user",searchUserDTOS));
+    }
+
+    @Override
+    public ResponseEntity updatePhotoProfile(RequestPhotoDTO requestPhotoDTO) {
+        User user = userDAO.get(requestPhotoDTO.getId());
+        user.setId(requestPhotoDTO.getId());
+        user.setPhotoProfile(requestPhotoDTO.getUrl());
+        userDAO.save(user);
+        return ResponseEntity.ok(new ResponseUpdate(user));
+    }
+
+    @Override
+    public ResponseEntity updatePhotoCover(RequestPhotoDTO requestPhotoDTO) {
+        User user = userDAO.get(requestPhotoDTO.getId());
+        user.setId(requestPhotoDTO.getId());
+        user.setCover(requestPhotoDTO.getUrl());
+        userDAO.save(user);
+        return ResponseEntity.ok(new ResponseUpdate(user));
     }
 
 }

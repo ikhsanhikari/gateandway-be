@@ -1,6 +1,7 @@
 package id.gate.root.gaterootbe.endpoint;
 
 import id.gate.root.gaterootbe.data.dto.request.RequestLoginDTO;
+import id.gate.root.gaterootbe.data.dto.request.RequestPhotoDTO;
 import id.gate.root.gaterootbe.data.dto.request.RequestUserDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +35,12 @@ public interface UserEndPoint {
 
     @GetMapping("/search")
     ResponseEntity findAllSearch();
+
+    @PostMapping("/photo_profile/update")
+    ResponseEntity updatePhotoProfile(@RequestBody RequestPhotoDTO requestPhotoDTO);
+
+    @PostMapping("/photo_cover/update")
+    ResponseEntity updatePhotoCover(@RequestBody RequestPhotoDTO requestPhotoDTO);
 
 
 }

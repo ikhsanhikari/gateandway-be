@@ -6,6 +6,7 @@ import id.gate.root.gaterootbe.data.model.Post;
 import id.gate.root.gaterootbe.util.AlphaNumeric;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
@@ -25,10 +26,14 @@ public class PostMapper implements BaseMapper<Post, RequestPostDTO>{
     }
 
     public ResponsePostDTO convert(Post source){
+
+        String pattern = "yyyy-MM-dd'T'HH:mm:ss";
+        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+
         ResponsePostDTO result = new ResponsePostDTO();
 
         result.setId(source.getId());
-        result.setCreatedAt(source.getCreatedAt());
+        result.setCreatedAt(sdf.format(source.getCreatedAt()));
         result.setDeleteAt(source.getDeleteAt());
         result.setPost(source.getPost());
         result.setStatus(source.getStatus());

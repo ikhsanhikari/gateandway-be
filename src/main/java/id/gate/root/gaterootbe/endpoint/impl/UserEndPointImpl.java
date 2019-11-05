@@ -1,6 +1,7 @@
 package id.gate.root.gaterootbe.endpoint.impl;
 
 import id.gate.root.gaterootbe.data.dto.request.RequestLoginDTO;
+import id.gate.root.gaterootbe.data.dto.request.RequestPhotoDTO;
 import id.gate.root.gaterootbe.data.dto.request.RequestUserDTO;
 import id.gate.root.gaterootbe.endpoint.UserEndPoint;
 import id.gate.root.gaterootbe.service.UserService;
@@ -61,6 +62,16 @@ public class UserEndPointImpl implements UserEndPoint {
     @Override
     public ResponseEntity findAllSearch() {
         return userService.findAllSearch();
+    }
+
+    @Override
+    public ResponseEntity updatePhotoProfile(@RequestBody  RequestPhotoDTO requestPhotoDTO) {
+        return userService.updatePhotoProfile(requestPhotoDTO);
+    }
+
+    @Override
+    public ResponseEntity updatePhotoCover(@RequestBody RequestPhotoDTO requestPhotoDTO) {
+        return userService.updatePhotoCover(requestPhotoDTO);
     }
 
 

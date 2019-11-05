@@ -19,7 +19,7 @@ public class ResponseFirstCommentDTO implements Serializable {
 
     private Integer status;
 
-    private Date createdAt;
+    private String createdAt;
 
     private Date updateAt;
 

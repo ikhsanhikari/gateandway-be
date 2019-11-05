@@ -37,6 +37,10 @@ public class User implements Serializable {
 
     private String password;
 
+    private  String photoProfile;
+
+    private String cover;
+
     private Integer status;
 
     private Date createdAt;

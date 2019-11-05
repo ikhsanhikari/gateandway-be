@@ -1,5 +1,6 @@
 package id.gate.root.gaterootbe.service;
 
+import id.gate.root.gaterootbe.data.dto.request.RequestPhotoDTO;
 import id.gate.root.gaterootbe.data.dto.request.RequestUserDTO;
 import org.springframework.http.ResponseEntity;
 
@@ -28,6 +29,10 @@ public interface UserService {
     ResponseEntity findUserByLastNameOrFirstName(String search);
 
     ResponseEntity findAllSearch();
+
+    ResponseEntity updatePhotoProfile(RequestPhotoDTO requestPhotoDTO);
+
+    ResponseEntity updatePhotoCover(RequestPhotoDTO requestPhotoDTO);
 
 
 }

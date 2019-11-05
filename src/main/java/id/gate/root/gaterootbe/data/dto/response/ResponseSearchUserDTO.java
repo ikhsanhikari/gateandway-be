@@ -28,4 +28,8 @@ public class ResponseSearchUserDTO implements Serializable {
 
     private String email;
 
+    private String photoProfile;
+
+    private String photoCover;
+
 }

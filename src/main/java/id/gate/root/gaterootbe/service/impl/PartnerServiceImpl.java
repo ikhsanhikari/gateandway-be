@@ -1,11 +1,15 @@
 package id.gate.root.gaterootbe.service.impl;
 
 import id.gate.root.gaterootbe.dao.PartnerDAO;
+import id.gate.root.gaterootbe.dao.UserDAO;
+import id.gate.root.gaterootbe.data.dto.request.RequestGeneralNotificationDTO;
 import id.gate.root.gaterootbe.data.dto.request.RequestPartnerDTO;
 import id.gate.root.gaterootbe.data.json.ResponseData;
 import id.gate.root.gaterootbe.data.json.ResponseSave;
 import id.gate.root.gaterootbe.data.model.Partner;
+import id.gate.root.gaterootbe.data.model.User;
 import id.gate.root.gaterootbe.mapper.PartnerMapper;
+import id.gate.root.gaterootbe.service.GeneralNotificationService;
 import id.gate.root.gaterootbe.service.PartnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +26,12 @@ public class PartnerServiceImpl implements PartnerService {
     @Autowired
     private PartnerDAO partnerDAO;
 
+    @Autowired
+    private GeneralNotificationService generalNotificationService;
+
+    @Autowired
+    private UserDAO userDAO;
+
     @Override
     public ResponseEntity findAll() {
         return null;
@@ -32,6 +42,13 @@ public class PartnerServiceImpl implements PartnerService {
 
         Partner partner = partnerMapper.reverse(requestPartnerDTO);
         partnerDAO.save(partner);
+
+        RequestGeneralNotificationDTO requestGeneralNotificationDTO= new RequestGeneralNotificationDTO();
+        requestGeneralNotificationDTO.setUserId(requestPartnerDTO.getPartnerId());
+
+        User user =userDAO.get(requestPartnerDTO.getUserId());
+        requestGeneralNotificationDTO.setMessage( user.getFirstName()+ " make collabs request ");
+        generalNotificationService.save(requestGeneralNotificationDTO);
 
         return ResponseEntity.ok(new ResponseSave(partner));
     }
@@ -48,6 +65,13 @@ public class PartnerServiceImpl implements PartnerService {
         requestPartner.setConfirm_at(new Date());
 
         partnerDAO.save(requestPartner);
+
+        RequestGeneralNotificationDTO requestGeneralNotificationDTO= new RequestGeneralNotificationDTO();
+        requestGeneralNotificationDTO.setUserId(requestPartnerDTO.getPartnerId());
+
+        User user =userDAO.get(requestPartnerDTO.getUserId());
+        requestGeneralNotificationDTO.setMessage( user.getFirstName()+ " has accepted your collabs request ");
+        generalNotificationService.save(requestGeneralNotificationDTO);
 
         return ResponseEntity.ok(new ResponseSave(partner));
     }

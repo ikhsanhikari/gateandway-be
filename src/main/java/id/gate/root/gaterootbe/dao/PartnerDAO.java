@@ -19,7 +19,7 @@ public interface PartnerDAO extends JpaRepository<Partner,Long> {
     @Query("select u from Partner u where u.status = 1 and u.userId = ?1 and u.isConfirm=false")
     List<Partner> findByUserIdNotConfirmYet(Long userId);
 
-    @Query("select u from Partner u where u.status = 1 and u.partnerId = ?1 and u.isConfirm=false")
+    @Query("select u from Partner u where u.status = 1 and u.partnerId = ?1 and u.isConfirm=false order by u.createdAt desc")
     List<Partner> findRequestParnter(Long partnerId);
 
     @Query("select u from Partner u where u.status = 1 and u.userId = ?1 and u.partnerId = ?2")

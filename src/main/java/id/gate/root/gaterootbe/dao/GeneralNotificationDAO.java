@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface GeneralNotificationDAO extends JpaRepository<GeneralNotification,Long> {
 
+    @Query("select u from GeneralNotification u where u.status = 1 and u.userId = ?1 order by u.createdAt desc")
     List<GeneralNotification> findByUserId(Long userId);
 
     @Query("select u from GeneralNotification u where u.status = 1 and id = ?1")

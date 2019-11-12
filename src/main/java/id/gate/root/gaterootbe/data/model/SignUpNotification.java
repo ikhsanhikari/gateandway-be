@@ -4,26 +4,20 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@ToString
 @Entity
-@Table(name = "post")
-public class Post implements Serializable {
+@Table(name = "signup_notification")
+@ToString
+public class SignUpNotification {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    private String uniquePostID;
+    private String message;
 
-    Long userId;
-
-    String post;
-
-    String urlPhoto;
+    private String username;
 
     private Integer status;
 
@@ -32,6 +26,4 @@ public class Post implements Serializable {
     private Date updateAt;
 
     private Date deleteAt;
-
-
 }

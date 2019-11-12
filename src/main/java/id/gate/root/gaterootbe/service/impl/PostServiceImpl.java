@@ -88,9 +88,6 @@ public class PostServiceImpl implements PostService {
             postDTOS.add(postDTO);
         }
 
-
-
-
         return ResponseEntity.ok(new ResponseData(postDTOS.size(),"post",postDTOS));
     }
 

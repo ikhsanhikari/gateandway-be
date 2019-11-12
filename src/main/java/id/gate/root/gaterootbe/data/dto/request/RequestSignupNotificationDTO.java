@@ -5,13 +5,9 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-@Data
 @ToString
-public class RequestPostDTO implements Serializable {
-
-    Long userId;
-
-    String post;
-
-    String urlPhoto;
+@Data
+public class RequestSignupNotificationDTO implements Serializable {
+    private String message;
+    private String username;
 }

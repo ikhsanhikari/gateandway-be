@@ -27,4 +27,8 @@ public class RequestUserDTO implements Serializable {
 
     private String password;
 
+    private String address;
+
+    private String businessInterest;
+
 }

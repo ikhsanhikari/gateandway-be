@@ -2,6 +2,7 @@ package id.gate.root.gaterootbe.service.impl;
 
 import id.gate.root.gaterootbe.dao.*;
 import id.gate.root.gaterootbe.data.dto.request.RequestPhotoDTO;
+import id.gate.root.gaterootbe.data.dto.request.RequestSignupNotificationDTO;
 import id.gate.root.gaterootbe.data.dto.request.RequestUserDTO;
 import id.gate.root.gaterootbe.data.dto.response.*;
 import id.gate.root.gaterootbe.data.json.*;
@@ -10,6 +11,7 @@ import id.gate.root.gaterootbe.mapper.AchievementMapper;
 import id.gate.root.gaterootbe.mapper.EducationMapper;
 import id.gate.root.gaterootbe.mapper.ExperienceMapper;
 import id.gate.root.gaterootbe.mapper.UserMapper;
+import id.gate.root.gaterootbe.service.SignupNotificationService;
 import id.gate.root.gaterootbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,6 +59,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private PartnerDAO partnerDAO;
+
+    @Autowired
+    private SignupNotificationService signupNotificationService;
 
     @Override
     public ResponseEntity findAll() {
@@ -112,6 +117,11 @@ public class UserServiceImpl implements UserService{
         if(cek == null){
             User user = userMapper.reverse(requestUserDTO);
             userDAO.save(user);
+            RequestSignupNotificationDTO req = new RequestSignupNotificationDTO();
+            req.setUsername(user.getUsername());
+            req.setMessage(requestUserDTO.getFirstName()+" Has Joined Gate and Choose "+user.getBusinessInterest()+ " For Their business, Check profile for make your partner");
+            signupNotificationService.save(req);
+
             return ResponseEntity.ok(new ResponseSave(user));
         }else{
             return ResponseEntity.badRequest().body("Email has been already exist");

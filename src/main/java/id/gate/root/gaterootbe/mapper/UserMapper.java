@@ -26,6 +26,8 @@ public class UserMapper implements BaseMapper<User, RequestUserDTO>{
         user.setUsername(source.getFirstName()+ "-"+AlphaNumeric.randomAlphaNumeric(6));
         user.setEmail(source.getEmail());
         user.setPassword(source.getPassword());
+        user.setBusinessInterest(source.getBusinessInterest());
+        user.setAddress(source.getAddress());
 
         user.setStatus(1);
         user.setCreatedAt(new Date());
@@ -45,6 +47,9 @@ public class UserMapper implements BaseMapper<User, RequestUserDTO>{
         result.setLastName(source.getLastName());
         result.setPhoneNumber(source.getPhoneNumber());
         result.setEmail(source.getEmail());
+        result.setBusinessInterest(source.getBusinessInterest());
+        result.setAddress(source.getAddress());
+
         return result;
     }
 
@@ -62,6 +67,8 @@ public class UserMapper implements BaseMapper<User, RequestUserDTO>{
         result.setEmail(source.getEmail());
         result.setPhotoProfile(source.getPhotoProfile());
         result.setPhotoCover(source.getCover());
+        result.setBusinessInterest(source.getBusinessInterest());
+        result.setAddress(source.getAddress());
 
         return result;
     }

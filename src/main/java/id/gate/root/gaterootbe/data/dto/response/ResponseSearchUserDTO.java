@@ -32,4 +32,8 @@ public class ResponseSearchUserDTO implements Serializable {
 
     private String photoCover;
 
+    private String address;
+
+    private String businessInterest;
+
 }

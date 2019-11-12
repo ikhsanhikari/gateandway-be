@@ -41,6 +41,10 @@ public class User implements Serializable {
 
     private String cover;
 
+    private String address;
+
+    private String businessInterest;
+
     private Integer status;
 
     private Date createdAt;

@@ -1,13 +1,19 @@
 package id.gate.root.gaterootbe.service.impl;
 
 import id.gate.root.gaterootbe.dao.FirstCommentDAO;
+import id.gate.root.gaterootbe.dao.PostDAO;
 import id.gate.root.gaterootbe.dao.PostFirstCommentDAO;
+import id.gate.root.gaterootbe.dao.UserDAO;
 import id.gate.root.gaterootbe.data.dto.request.RequestFirstCommentDTO;
+import id.gate.root.gaterootbe.data.dto.request.RequestGeneralNotificationDTO;
 import id.gate.root.gaterootbe.data.json.*;
 import id.gate.root.gaterootbe.data.model.FirstComment;
+import id.gate.root.gaterootbe.data.model.Post;
 import id.gate.root.gaterootbe.data.model.PostFirstComment;
+import id.gate.root.gaterootbe.data.model.User;
 import id.gate.root.gaterootbe.mapper.FirstCommentMapper;
 import id.gate.root.gaterootbe.service.FirstCommentService;
+import id.gate.root.gaterootbe.service.GeneralNotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +33,15 @@ public class FirstCommentServiceImpl implements FirstCommentService {
     @Autowired
     private PostFirstCommentDAO postFirstCommentDAO;
 
+    @Autowired
+    private PostDAO postDAO;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    @Autowired
+    private GeneralNotificationService generalNotificationService;
+
     @Override
     public ResponseEntity findAll() {
         List<FirstComment> experiences = firstCommentDAO.select();
@@ -44,6 +59,23 @@ public class FirstCommentServiceImpl implements FirstCommentService {
         postFirstComment.setPostId(requestFirstCommentDTO.getPostId());
         postFirstComment.setUserId(requestFirstCommentDTO.getUserId());
         postFirstCommentDAO.save(postFirstComment);
+
+        Post post = postDAO.get(requestFirstCommentDTO.getPostId());
+        User user = userDAO.get(post.getUserId());
+
+        User commentUser = userDAO.get(requestFirstCommentDTO.getUserId());
+
+
+        if(user.getId()!=requestFirstCommentDTO.getUserId()){
+            RequestGeneralNotificationDTO requestGeneralNotificationDTO= new RequestGeneralNotificationDTO();
+            requestGeneralNotificationDTO.setUserId(user.getId());
+
+
+            requestGeneralNotificationDTO.setMessage( commentUser.getFirstName()+ " comment your status ("+requestFirstCommentDTO.getFirstComment()+")");
+            generalNotificationService.save(requestGeneralNotificationDTO);
+        }
+
+
 
         return ResponseEntity.ok(new ResponseSave(firstComment));
     }

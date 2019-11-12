@@ -1,0 +1,19 @@
+package id.gate.root.gaterootbe.endpoint;
+
+
+import id.gate.root.gaterootbe.data.dto.request.RequestSignupNotificationDTO;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@RequestMapping("signup_notification")
+public interface SignupNotificationEndPoint {
+
+    @GetMapping("")
+    ResponseEntity findAll();
+
+    @PostMapping("")
+    ResponseEntity save(@RequestBody RequestSignupNotificationDTO requestSignupNotificationDTO);
+}

@@ -21,6 +21,7 @@ public class PostMapper implements BaseMapper<Post, RequestPostDTO>{
         result.setStatus(1);
         result.setCreatedAt(new Date());
         result.setUniquePostID("post-"+AlphaNumeric.randomAlphaNumeric(6));
+        result.setUrlPhoto(source.getUrlPhoto());
 
         return result;
     }
@@ -40,6 +41,7 @@ public class PostMapper implements BaseMapper<Post, RequestPostDTO>{
         result.setUniquePostID(source.getUniquePostID());
         result.setUpdateAt(source.getUpdateAt());
         result.setUserId(source.getUserId());
+        result.setUrlPhoto(source.getUrlPhoto());
 
         return result;
     }

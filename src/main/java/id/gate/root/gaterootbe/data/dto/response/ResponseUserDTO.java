@@ -27,6 +27,10 @@ public class ResponseUserDTO implements Serializable {
 
     private String email;
 
+    private String address;
+
+    private String businessInterest;
+
     private List<ResponseAchievementDTO> achievements;
 
     private List<ResponseExperienceDTO> experiences;

@@ -21,6 +21,8 @@ public class ResponsePostDTO implements Serializable {
 
     String post;
 
+    String urlPhoto;
+
     User users ;
 
     List<ResponseFirstCommentDTO> firstComments;

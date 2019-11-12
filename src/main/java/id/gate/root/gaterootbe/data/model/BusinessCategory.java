@@ -8,22 +8,17 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Data
-@ToString
 @Entity
-@Table(name = "post")
-public class Post implements Serializable {
+@Table(name = "business_category")
+@ToString
+public class BusinessCategory implements Serializable {
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    private String uniquePostID;
+    private String category;
 
-    Long userId;
-
-    String post;
-
-    String urlPhoto;
+    private String description;
 
     private Integer status;
 
@@ -32,6 +27,4 @@ public class Post implements Serializable {
     private Date updateAt;
 
     private Date deleteAt;
-
-
 }

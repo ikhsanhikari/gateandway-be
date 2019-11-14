@@ -79,6 +79,9 @@ public class AchievementServiceImpl implements AchievementService {
 
         achievementDAO.save(achievement);
 
+        UserAchievement userAchievement = userAchievementDAO.findByAchievementId(id);
+        userAchievementDAO.delete(userAchievement);
+
 
         return ResponseEntity.ok(new ResponseDelete(achievement));
     }

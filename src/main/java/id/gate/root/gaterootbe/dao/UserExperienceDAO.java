@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface UserExperienceDAO extends JpaRepository<UserExperience,Long> {
     List<UserExperience> findByUserId(Long userId);
+    UserExperience findByExperienceId(Long experienceId);
 }

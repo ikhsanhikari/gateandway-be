@@ -10,6 +10,8 @@ import java.util.Date;
 @ToString
 public class ResponseExperienceDTO implements Serializable {
 
+    private Long id;
+
     private String title;
 
     private String company;

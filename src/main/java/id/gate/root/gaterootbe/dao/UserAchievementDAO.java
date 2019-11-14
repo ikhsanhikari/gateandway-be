@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserAchievementDAO extends JpaRepository<UserAchievement,Long> {
     List<UserAchievement> findByUserId(Long userId);
+    UserAchievement findByAchievementId(Long achievementId);
 }

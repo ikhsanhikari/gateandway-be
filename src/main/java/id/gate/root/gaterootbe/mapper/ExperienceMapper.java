@@ -34,17 +34,18 @@ public class ExperienceMapper implements BaseMapper<Experience, RequestExperienc
         String pattern = "MMMM yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
-        String startDate = simpleDateFormat.format(source.getStartDate());
-        String endDate = simpleDateFormat.format(source.getEndDate());
+//        String startDate = simpleDateFormat.format(source.getStartDate());
+//        String endDate = simpleDateFormat.format(source.getEndDate());
 
         ResponseExperienceDTO result = new ResponseExperienceDTO();
 
+        result.setId(source.getId());
         result.setCompany(source.getCompany());
         result.setDescription(source.getDescription());
-        result.setEndDate(endDate);
+//        result.setEndDate(endDate);
         result.setHeadline(source.getHeadline());
         result.setLocation(source.getLocation());
-        result.setStartDate(startDate);
+//        result.setStartDate(startDate);
         result.setTitle(source.getTitle());
         result.setCreatedAt(source.getCreatedAt());
         result.setStatus(source.getStatus());

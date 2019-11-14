@@ -80,6 +80,9 @@ public class EducationServiceImpl implements EducationService {
 
         educationDAO.save(education);
 
+        UserEducation userEducation = userEducationDAO.findByEducationId(id);
+        userEducationDAO.delete(userEducation);
+
 
         return ResponseEntity.ok(new ResponseDelete(education ));
     }

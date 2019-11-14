@@ -25,6 +25,7 @@ public class AchievementMapper implements BaseMapper<Achievement, RequestAchieve
 
     public ResponseAchievementDTO convert(Achievement source) {
         ResponseAchievementDTO result = new ResponseAchievementDTO();
+        result.setId(source.getId());
         result.setCourseName(source.getCourseName());
         result.setAssociatedWith(source.getAssociatedWith());
         return result;

@@ -82,6 +82,9 @@ public class ExperienceServiceImpl implements ExperienceService {
 
         experienceDAO.save(experience);
 
+        UserExperience userExperience = userExperienceDAO.findByExperienceId(id);
+        userExperienceDAO.delete(userExperience);
+
 
         return ResponseEntity.ok(new ResponseDelete(experience ));
     }

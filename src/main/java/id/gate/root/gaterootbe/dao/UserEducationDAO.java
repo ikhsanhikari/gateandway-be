@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface UserEducationDAO extends JpaRepository<UserEducation,Long> {
     List<UserEducation> findByUserId(Long userId);
+    UserEducation findByEducationId(Long educationId);
 }

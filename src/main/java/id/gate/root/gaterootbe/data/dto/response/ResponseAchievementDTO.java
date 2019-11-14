@@ -8,7 +8,7 @@ import java.io.Serializable;
 @ToString
 @Data
 public class ResponseAchievementDTO implements Serializable {
-
+    private Long id;
     private String courseName;
     private String associatedWith;
 

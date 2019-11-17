@@ -3,10 +3,12 @@ package id.gate.root.gaterootbe.service.impl;
 import id.gate.root.gaterootbe.dao.*;
 import id.gate.root.gaterootbe.data.dto.request.RequestPostDTO;
 import id.gate.root.gaterootbe.data.dto.response.ResponseFirstCommentDTO;
+import id.gate.root.gaterootbe.data.dto.response.ResponseInterestPostDTO;
 import id.gate.root.gaterootbe.data.dto.response.ResponsePostDTO;
 import id.gate.root.gaterootbe.data.json.*;
 import id.gate.root.gaterootbe.data.model.*;
 import id.gate.root.gaterootbe.mapper.FirstCommentMapper;
+import id.gate.root.gaterootbe.mapper.InterestPostMapper;
 import id.gate.root.gaterootbe.mapper.PostMapper;
 import id.gate.root.gaterootbe.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,12 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private FirstCommentMapper firstCommentMapper;
+
+    @Autowired
+    private InterestPostDAO interestPostDAO;
+
+    @Autowired
+    private InterestPostMapper interestPostMapper;
 
     @Override
     public ResponseEntity findAll() {
@@ -83,7 +91,20 @@ public class PostServiceImpl implements PostService {
                 firstComments.add(responseFirstCommentDTO);
             }
 
+            List<InterestPost> interestPosts = interestPostDAO.findByPostId(post.getId());
+            List<ResponseInterestPostDTO> interestPostDTOS = new ArrayList<>();
+
+            for(InterestPost interestPost : interestPosts){
+                ResponseInterestPostDTO response = interestPostMapper.convert(interestPost);
+
+                interestPostDTOS.add(response);
+            }
+
+
+            postDTO.setInterest(interestPostDTOS);
             postDTO.setFirstComments(firstComments);
+
+
 
             postDTOS.add(postDTO);
         }

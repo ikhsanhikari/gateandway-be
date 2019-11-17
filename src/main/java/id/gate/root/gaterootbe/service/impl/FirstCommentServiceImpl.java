@@ -75,8 +75,6 @@ public class FirstCommentServiceImpl implements FirstCommentService {
             generalNotificationService.save(requestGeneralNotificationDTO);
         }
 
-
-
         return ResponseEntity.ok(new ResponseSave(firstComment));
     }
 

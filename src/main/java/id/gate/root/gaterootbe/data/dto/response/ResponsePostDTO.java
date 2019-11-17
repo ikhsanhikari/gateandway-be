@@ -27,6 +27,8 @@ public class ResponsePostDTO implements Serializable {
 
     List<ResponseFirstCommentDTO> firstComments;
 
+    List<ResponseInterestPostDTO> interest;
+
     private Integer status;
 
     private String createdAt;

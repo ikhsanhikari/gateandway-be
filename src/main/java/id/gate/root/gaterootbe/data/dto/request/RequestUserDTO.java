@@ -31,4 +31,6 @@ public class RequestUserDTO implements Serializable {
 
     private String businessInterest;
 
+    private Long roleId;
+
 }

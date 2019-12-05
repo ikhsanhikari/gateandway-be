@@ -45,6 +45,8 @@ public class User implements Serializable {
 
     private String businessInterest;
 
+    private Long roleId;
+
     private Integer status;
 
     private Date createdAt;

@@ -31,6 +31,8 @@ public class ResponseUserDTO implements Serializable {
 
     private String businessInterest;
 
+    private Long roleId;
+
     private List<ResponseAchievementDTO> achievements;
 
     private List<ResponseExperienceDTO> experiences;

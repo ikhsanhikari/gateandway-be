@@ -36,4 +36,6 @@ public class ResponseSearchUserDTO implements Serializable {
 
     private String businessInterest;
 
+    private Long roleId;
+
 }
